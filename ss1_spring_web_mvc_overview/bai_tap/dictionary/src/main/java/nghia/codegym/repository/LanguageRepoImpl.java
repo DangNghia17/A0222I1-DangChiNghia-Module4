@@ -32,7 +32,7 @@ public class LanguageRepoImpl implements LanguageRepo {
         if (languageMap.containsKey(english)) {
             return languageMap.get(english);
         } else {
-            return "Không tìm thấy từ !!";
+            return "Not found the word in dictionary !!";
         }
     }
 }
