@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Blog</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+<header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 text-center">
+            <a class="blog-header-logo text-dark display-1" href="#">Blog Page</a>
+        </div>
+        <div class="col-4 pt-1">
+            <a class="text-muted display-4 " href="#">Subscribe</a>
+        </div>
+    </div>
+</header>
+
+<div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+        <a class="p-2 text-muted" href="#">World</a>
+        <a class="p-2 text-muted" href="#">U.S.</a>
+        <a class="p-2 text-muted" href="#">Technology</a>
+        <a class="p-2 text-muted" href="#">Design</a>
+        <a class="p-2 text-muted" href="#">Culture</a>
+        <a class="p-2 text-muted" href="#">Business</a>
+        <a class="p-2 text-muted" href="#">Politics</a>
+        <a class="p-2 text-muted" href="#">Opinion</a>
+        <a class="p-2 text-muted" href="#">Science</a>
+        <a class="p-2 text-muted" href="#">Health</a>
+        <a class="p-2 text-muted" href="#">Style</a>
+        <a class="p-2 text-muted" href="#">Travel</a>
+        <form class="form-inline"  action="/search" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Input to search" name="nameSearch">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <form th:action="@{/save}" th:object="${blog}"
+                  method="POST" novalidate="novalidate">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group row">
+                    <label class="col-sm-3">Name</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" th:field="*{nameBlog}"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3">Content</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="3" th:field="*{content}"/>
+                    </div>
+                </div>
+                 <div class="form-group row">
+                    <label class="col-sm-3">Year</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="date" th:field="*{year}"/>
+                    </div>
+                </div>
+                <input class="btn btn-success" style="width: 100px" type="submit" value="Save"/>
+            </form>
+        </div>
+    </div>
+</section>
+<div style="padding-top: 20px; padding-left: 20px">
+    <a th:href="@{/list}" class="btn btn-secondary">
+        Back to blog list
+    </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog List</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+<header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 text-center">
+            <a class="blog-header-logo text-dark display-1" href="#">Blog Page</a>
+        </div>
+        <div class="col-4 pt-1">
+            <a class="text-muted display-4 " href="#">Subscribe</a>
+        </div>
+    </div>
+</header>
+
+<div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+        <a class="p-2 text-muted" href="#">World</a>
+        <a class="p-2 text-muted" href="#">U.S.</a>
+        <a class="p-2 text-muted" href="#">Technology</a>
+        <a class="p-2 text-muted" href="#">Design</a>
+        <a class="p-2 text-muted" href="#">Culture</a>
+        <a class="p-2 text-muted" href="#">Business</a>
+        <a class="p-2 text-muted" href="#">Politics</a>
+        <a class="p-2 text-muted" href="#">Opinion</a>
+        <a class="p-2 text-muted" href="#">Science</a>
+        <a class="p-2 text-muted" href="#">Health</a>
+        <a class="p-2 text-muted" href="#">Style</a>
+        <a class="p-2 text-muted" href="#">Travel</a>
+        <form class="form-inline" action="/search" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Input to search" name="nameSearch">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div style="padding-top: 20px ">
+                <a th:href="@{/create}" class="btn btn-success">Create New Blog</a>
+            </div>
+        </div>
+        <br>
+        <div class="notify">
+            <div class="text-success" th:if="${success}">
+                <span th:text="${success}"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                                <div class="table-wrap">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name Blog</th>
+                                            <th>Content</th>
+                                            <th>Time</th>
+                                            <th>View</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="blog: ${blogList}">
+                                            <td th:text="${blog.id}"></td>
+                                            <td th:text="${blog.nameBlog}"></td>
+                                            <td th:text="${blog.content}"></td>
+                                            <td th:text="${blog.year}"></td>
+                                            <td><a th:href="@{/edit/{id}(id=${blog.id})}" class="btn btn-warning">Edit</a></td>
+                                            <td><a th:href="@{/delete/{id}(id=${blog.id})}" class="btn btn-danger">Delete</a></td>
+                                            <td><a th:href="@{/view/{id}(id=${blog.id})}" class="btn btn-info">View</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                <div class="row mb-2">
+                <th:block th:each="blog : ${blogList}">
+                        <div class="col-md-6" >
+                            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <strong class="d-inline-block mb-2 text-primary">World</strong>
+                                    <h3 class="mb-0" th:text="${blog.nameBlog}"></h3>
+                                    <div class="mb-1 text-muted" th:text="${blog.year}"></div>
+                                    <p class="card-text mb-auto" th:text="${blog.content}"></p>
+                                    <a th:href="@{/view/{id}(id=${blog.id})}" class="stretched-link">Continue reading</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+</section>
+</body>
+</html>
