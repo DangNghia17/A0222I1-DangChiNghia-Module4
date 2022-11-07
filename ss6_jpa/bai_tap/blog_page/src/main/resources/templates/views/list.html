@@ -32,7 +32,7 @@
         <a class="p-2 text-muted" href="#">Health</a>
         <a class="p-2 text-muted" href="#">Style</a>
         <a class="p-2 text-muted" href="#">Travel</a>
-        <form class="form-inline" action="/search" method="get">
+        <form class="form-inline" th:action="@{/list/search}" method="get">
             <input class="form-control mr-sm-2" type="search" placeholder="Input to search" name="nameSearch">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -93,8 +93,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </th:block>
+                </div>
             </div>
         </div>
     </div>

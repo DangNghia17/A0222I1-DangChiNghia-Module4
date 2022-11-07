@@ -8,7 +8,9 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
-    private String nameBlog;
+
+    @Column(columnDefinition = "varchar(255) default 'default category'")
+    private String nameBlog;    // nameBlog ~ is nameCategory
 
     @OneToMany( mappedBy = "category") //map to variable
     private Set<Blog> blog; // nothing

@@ -32,7 +32,7 @@
         <a class="p-2 text-muted" href="#">Health</a>
         <a class="p-2 text-muted" href="#">Style</a>
         <a class="p-2 text-muted" href="#">Travel</a>
-        <form class="form-inline"  action="/search" method="get">
+        <form class="form-inline" action="/search" method="get">
             <input class="form-control mr-sm-2" type="search" placeholder="Input to search" name="nameSearch">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -61,15 +61,19 @@
                     <div class="col-sm-9">
                         <input class="form-control" type="date" th:field="*{year}" readonly/>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label style="">Category</label>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3">Category</label>
+                    <div class="col-sm-9">
                         <select class="form-control" th:field="*{category}">
-                            <option th:each="category : ${category}" th:text="${category.nameBlog}" th:value="${category.id}"></option>
+                            <option th:each="category : ${category}" th:text="${category.nameBlog}"
+                                    th:value="${category.id}" disabled></option>
                         </select>
                     </div>
                 </div>
             </form>
         </div>
+    </div>
     </div>
 </section>
 <div style="padding-top: 20px; padding-left: 20px">

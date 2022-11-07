@@ -3,13 +3,14 @@ package com.nghia.controller;
 import com.nghia.model.Blog;
 import com.nghia.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 public class BlogController {
@@ -70,6 +71,13 @@ public class BlogController {
         blogService.delete(blog.getId());
         redirectAttributes.addFlashAttribute("success", "Delete product successfully!!!");
         return "redirect:/list";
+    }
+    @GetMapping("/list/search")
+    public String search(@RequestParam("nameSearch") String name, Model model) {
+        List<Blog> blog = blogService.searchByName(name);
+        model.addAttribute("nameSearch", name);
+        model.addAttribute("blogList", blog);
+        return "views/list";
     }
 
 }

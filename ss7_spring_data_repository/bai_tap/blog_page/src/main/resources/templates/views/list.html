@@ -84,20 +84,20 @@
                 </div>
 
 
-                <div>
-                    <a th:href="@{/list/search(name=${name},page=${blogList.number-1})}"
-                       th:if="${blogList.hasPrevious()}">
-                        <span>Previous</span>
-                    </a>
-                    <span th:each="pageNo:${#numbers.sequence(1,blogList.totalPages)}">
-                        <a th:href="@{/list/search(name=${name}, page = ${pageNo} - 1)}" th:text="${pageNo}"></a>
-                    </span>
-                    <a th:href="@{/list/search(name=${name},page=${blogList.number+1})}"
-                       th:if="${blogList.hasNext()}">
-                        <span>Next</span>
-                    </a>
-                </div>
-
+<!--                <div>-->
+<!--                    <a th:href="@{/list/search(name=${name},page=${blogList.number-1})}"-->
+<!--                       th:if="${blogList.hasPrevious()}">-->
+<!--                        <span>Previous</span>-->
+<!--                    </a>-->
+<!--                    <span th:each="pageNo:${#numbers.sequence(1,blogList.totalPages)}">-->
+<!--                        <a th:href="@{/list/search(name=${name}, page = ${pageNo} - 1)}" th:text="${pageNo}"></a>-->
+<!--                    </span>-->
+<!--                    <a th:href="@{/list/search(name=${name},page=${blogList.number+1})}"-->
+<!--                       th:if="${blogList.hasNext()}">-->
+<!--                        <span>Next</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+<hr>
 
                 <div class="row mb-2">
                     <th:block th:each="blog : ${blogList}">

@@ -2,6 +2,7 @@ package com.nghia.controller;
 
 import com.nghia.model.Blog;
 import com.nghia.service.IBlogService;
+import com.nghia.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BlogController {
     @Autowired
     IBlogService blogService;
+    @Autowired
+    ICategoryService categoryService;
 
     @ModelAttribute("blog")
     public Blog initProduct() {
@@ -31,6 +34,7 @@ public class BlogController {
     @GetMapping("/create")
     public String showFormCreate(Model model) {
         model.addAttribute("blog", new Blog());
+        model.addAttribute("category", categoryService.findAll());
         return "views/create";
     }
 
@@ -44,6 +48,7 @@ public class BlogController {
     @GetMapping("/edit/{id}")
     public String viewEdit(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("blog", blogService.findById(id));
+        model.addAttribute("category", categoryService.findAll());
         return "views/edit";
     }
 
@@ -57,12 +62,14 @@ public class BlogController {
     @GetMapping("/view/{id}")
     public String viewProduct(@PathVariable("id") int id, Model model) {
         model.addAttribute("blog", blogService.findById(id));
+        model.addAttribute("category", categoryService.findAll());
         return "views/view";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteForm(@PathVariable("id") int id, Model model) {
         model.addAttribute("blog", blogService.findById(id));
+        model.addAttribute("category", categoryService.findAll());
         return "views/delete";
     }
 
@@ -74,11 +81,11 @@ public class BlogController {
     }
 
     @GetMapping("/list/search")
-    public String search(@RequestParam("name") String name,
+    public String search(@RequestParam("nameSearch") String name,
                          @RequestParam(value = "page", defaultValue = "0") int page,
                          Model model) {
         Page<Blog> blog = blogService.seachByName(name, PageRequest.of(page, 4));
-        model.addAttribute("name", name);
+        model.addAttribute("nameSearch", name);
         model.addAttribute("blogList", blog);
         return "views/list";
     }
