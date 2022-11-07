@@ -38,6 +38,6 @@ public class BlogService implements IBlogService {
 
     @Override
     public List<Blog> searchByName(String name) {
-        return blogRepository.searchByName(name);
+        return blogRepository.searchByName("%" + name + "%");
     }
 }
