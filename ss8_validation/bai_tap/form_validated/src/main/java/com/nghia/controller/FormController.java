@@ -34,7 +34,7 @@ public class FormController {
     public String save(@Valid @ModelAttribute("user") User user, BindingResult bindingResult ,
                        RedirectAttributes redirectAttributes) {
         new User().validate(user, bindingResult);
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasFieldErrors()) {
             return "create";
         }
         userService.save(user);

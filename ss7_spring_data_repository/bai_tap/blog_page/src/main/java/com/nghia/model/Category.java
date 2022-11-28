@@ -12,7 +12,7 @@ public class Category {
     @Column(columnDefinition = "varchar(255) default 'default category'")
     private String nameBlog;    // nameBlog ~ is nameCategory
 
-    @OneToMany( mappedBy = "category") //map to variable
+    @OneToMany(mappedBy = "category") //map to variable
     private Set<Blog> blog; // nothing
 
     public Category() {

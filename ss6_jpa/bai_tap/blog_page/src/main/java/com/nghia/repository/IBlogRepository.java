@@ -12,7 +12,9 @@ import java.util.List;
 
 @Repository
 public interface IBlogRepository extends JpaRepository<Blog,Integer> {
-    @Query(value = "select * from blog where 'name' like :name " , nativeQuery = true)
+    @Query(value = "select * from blog where name like :name " , nativeQuery = true)
     List<Blog> searchByName(@Param("name") String name );
+
+    List<Blog> findAllByNameBlogContaining(@Param("name") String name );
 
 }

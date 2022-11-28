@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog List</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+<header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-md-6 text-center blog-header-logo">
+            <img src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30164225/572-768x591.png" width="250px"
+                 height="200px">
+        </div>
+        <div class="col-md-6 pt-1">
+            <a class="text-muted display-4 float-right" href="#">Subscribe</a>
+        </div>
+    </div>
+</header>
+
+<div class="nav-scroller py-1 mb-2 position-sticky " style="top: 1rem;background-color:  #f2f2f2">
+    <nav class="nav d-flex justify-content-between">
+        <a class="p-2 text-body" href="#">World</a>
+        <a class="p-2 text-body" href="#">U.S.</a>
+        <a class="p-2 text-body" href="#">Technology</a>
+        <a class="p-2 text-body" href="#">Design</a>
+        <a class="p-2 text-body" href="#">Culture</a>
+        <a class="p-2 text-body" href="#">Business</a>
+        <a class="p-2 text-body" href="#">Politics</a>
+        <a class="p-2 text-body" href="#">Opinion</a>
+        <a class="p-2 text-body" href="#">Science</a>
+        <a class="p-2 text-body" href="#">Health</a>
+        <a class="p-2 text-body" href="#">Style</a>
+        <a class="p-2 text-body" href="#">Travel</a>
+        <form class="form-inline" th:action="@{/list/search}" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Input to search" name="nameSearch">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div style="padding-top: 20px">
+                <a th:href="@{/create}" class="btn btn-success">Create New Blog</a>
+            </div>
+        </div>
+        <br>
+        <div class="notify">
+            <div class="text-success" th:if="${success}">
+                <span th:text="${success}"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name Blog</th>
+                            <th>Content</th>
+                            <th>Time</th>
+                            <th>Category</th>
+                            <th>View</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="color: red ; font-size: 45px" colspan="8" >Not found name blog!!!</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container">
+                    <div class="pagination" th:each="stt, s: ${blogList.totalPages}">
+
+                        <a th:href="@{'/list'(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}">&laquo;</a>
+
+                        <a class="active" th:text="${blogList.number + 1}"></a>
+                        <a th:href="@{'/list'(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}">&raquo;</a>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</section>
+</body>
+<footer>
+    <img src="https://cdn.pixabay.com/photo/2017/01/18/10/43/banner-1989514_1280.png" width="1920px" height="200px">
+</footer>
+</html>

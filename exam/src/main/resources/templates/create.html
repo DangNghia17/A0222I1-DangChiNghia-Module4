@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Giao Dich</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+<header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 text-center">
+            <a class="blog-header-logo text-dark display-1" href="#">GD Page</a>
+        </div>
+        <div class="col-4 pt-1">
+            <a class="text-muted display-4 " href="#">Subscribe</a>
+        </div>
+    </div>
+</header>
+
+<div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+        <a class="p-2 text-muted" href="#">World</a>
+        <a class="p-2 text-muted" href="#">U.S.</a>
+        <a class="p-2 text-muted" href="#">Technology</a>
+        <a class="p-2 text-muted" href="#">Design</a>
+        <a class="p-2 text-muted" href="#">Culture</a>
+        <a class="p-2 text-muted" href="#">Business</a>
+        <a class="p-2 text-muted" href="#">Politics</a>
+        <a class="p-2 text-muted" href="#">Opinion</a>
+        <a class="p-2 text-muted" href="#">Science</a>
+        <a class="p-2 text-muted" href="#">Health</a>
+        <a class="p-2 text-muted" href="#">Style</a>
+        <a class="p-2 text-muted" href="#">Travel</a>
+        <form class="form-inline" action="/search" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Input to search" name="nameSearch">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <form th:action="@{/save}" th:object="${giaoDich}"
+                  method="POST">
+
+                <div class="form-group row">
+                    <label class="col-sm-3">Ma giao dich </label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" th:field="*{maGiaoDich}">
+                        <p style="color:red" th:if="${#fields.hasErrors('maGiaoDich')}" th:errors="*{maGiaoDich}"></p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3">Loai dich vu</label>
+                    <div class="col-sm-9">
+                        <label>Dat</label>
+                        <input class="form-control" type="radio" value="Dat" th:field="*{loaiDichVu}">
+                        <label>Nha Dat</label>
+                        <input class="form-control" type="radio" value="Nha Dat" th:field="*{loaiDichVu}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3">Ngay giao dich</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="date" th:field="*{ngayGiaoDich}">
+                        <p style="color:red" th:if="${#fields.hasErrors('ngayGiaoDich')}" th:errors="*{ngayGiaoDich}"></p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3">Don gia </label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" th:field="*{donGia}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3">Dien Tich </label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" th:field="*{dienTich}">
+                        <p style="color:red" th:if="${#fields.hasErrors('dienTich')}" th:errors="*{dienTich}"></p>
+                    </div>
+                </div>
+                <!--                <div class="form-group row">-->
+                <!--                    <label class="col-sm-3">Loại</label>-->
+                <!--                    <div class="col-sm-9">-->
+                <!--                        <select class="form-control" th:field="*{khachHang}">-->
+                <!--                            <option th:each="khachHang : ${khachHang}" th:text="${khachHang.tenKhachHang}"-->
+                <!--                                    th:value="${khachHang.maKhachHang}"></option>-->
+                <!--                        </select>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="form-group row">-->
+                <!--                    <label class="col-sm-3">Loai </label>-->
+                <!--                    <div class="col-sm-9">-->
+                <!--                        <input class="form-control" type="radio" th:field="*{loaiDichVu}"/>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                 <div class="form-group row">-->
+                <!--                    <label class="col-sm-3">Ngay giao dich </label>-->
+                <!--                    <div class="col-sm-9">-->
+                <!--                        <input class="form-control" type="date" th:field="*{ngayGiaoDich}"/>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="form-group row">-->
+                <!--                    <label class="col-sm-3">Content</label>-->
+                <!--                    <div class="col-sm-9">-->
+                <!--                        <textarea class="form-control" rows="3" th:field="*{donGia}"/>-->
+                <!--                        <p style="color:red" th:if="${#fields.hasErrors('donGia')}" th:errors="*{donGia}">name error</p>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="form-group row">-->
+                <!--                    <label class="col-sm-3">Content</label>-->
+                <!--                    <div class="col-sm-9">-->
+                <!--                        <textarea class="form-control" rows="3" th:field="*{dienTich}"/>-->
+                <!--                        <p style="color:red" th:if="${#fields.hasErrors('dienTich')}" th:errors="*{dienTich}">name error</p>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <input class="btn btn-success" style="width: 100px" type="submit" value="Save"/>
+            </form>
+        </div>
+    </div>
+</section>
+<div style="padding-top: 20px; padding-left: 20px">
+    <a th:href="@{/list}" class="btn btn-secondary">
+        Back to blog list
+    </a>
+</div>
+</body>
+</html>

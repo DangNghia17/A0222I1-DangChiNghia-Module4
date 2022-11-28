@@ -12,8 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface IBlogRepository extends JpaRepository<Blog, Integer> {
-    @Query(value = "select * from blog where 'name_blog' like :name ", nativeQuery = true)
-    Page<Blog> searchByNameContaining(@Param("name") String name, Pageable pageable);
+    Page<Blog> findAllByNameBlogContaining(@Param("name") String name, Pageable pageable);
 
 
 }

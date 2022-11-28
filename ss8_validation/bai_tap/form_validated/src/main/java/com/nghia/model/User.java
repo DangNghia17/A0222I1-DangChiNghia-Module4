@@ -30,7 +30,7 @@ public class User implements Validator {
     //Valid beside
     private Integer age;
 
-    @Email(message = "don't match with pattern email")
+    @Email(message = "don't match with pattern email") //"^(.+)@(\\S+)$"
     private String email;
 
     @Override

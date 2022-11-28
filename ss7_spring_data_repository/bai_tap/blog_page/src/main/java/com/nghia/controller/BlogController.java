@@ -65,7 +65,6 @@ public class BlogController {
         model.addAttribute("category", categoryService.findAll());
         return "views/view";
     }
-
     @GetMapping("/delete/{id}")
     public String deleteForm(@PathVariable("id") int id, Model model) {
         model.addAttribute("blog", blogService.findById(id));
@@ -87,6 +86,9 @@ public class BlogController {
         Page<Blog> blog = blogService.seachByName(name, PageRequest.of(page, 4));
         model.addAttribute("nameSearch", name);
         model.addAttribute("blogList", blog);
+        if (blog.isEmpty()){
+            return "views/404";
+        }
         return "views/list";
     }
 
